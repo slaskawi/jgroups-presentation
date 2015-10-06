@@ -2,13 +2,61 @@
  * JBoss, Home of Professional Open Source.
  * Copyright 2014 Red Hat, Inc., and individual contributors
  * as indicated by the @author tags.
- *
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p/>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * <p/>
+ * JBoss, Home of Professional Open Source.
+ * Copyright 2014 Red Hat, Inc., and individual contributors
+ * as indicated by the @author tags.
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * <p/>
+ * JBoss, Home of Professional Open Source.
+ * Copyright 2014 Red Hat, Inc., and individual contributors
+ * as indicated by the @author tags.
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * <p/>
+ * JBoss, Home of Professional Open Source.
+ * Copyright 2014 Red Hat, Inc., and individual contributors
+ * as indicated by the @author tags.
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -138,10 +186,10 @@ public class Demo5_SimpleChatClientWithStateTransfer extends ReceiverAdapter {
 
     @Override
     public void setState(InputStream input) throws Exception {
-        DataInput in = new DataInputStream(input);
-        List<String> newState = (List<String>) Util.objectFromStream(in);
         historyLock.lock();
         try {
+            DataInput in = new DataInputStream(input);
+            List<String> newState = (List<String>) Util.objectFromStream(in);
             history.clear();
             history.addAll(newState);
         } finally {
@@ -165,7 +213,8 @@ public class Demo5_SimpleChatClientWithStateTransfer extends ReceiverAdapter {
                         logger.info("History {}", history);
                         break;
                     default:
-                        MethodCall sendMessage = new MethodCall(this.getClass().getDeclaredMethod("printOut", String.class), input);
+                        MethodCall sendMessage = new MethodCall(this.getClass().getDeclaredMethod("printOut", String.class),
+                                input);
                         dispatcher.callRemoteMethods(null, sendMessage, RequestOptions.ASYNC());
                         break;
                 }

@@ -2,13 +2,61 @@
  * JBoss, Home of Professional Open Source.
  * Copyright 2014 Red Hat, Inc., and individual contributors
  * as indicated by the @author tags.
- *
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p/>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * <p/>
+ * JBoss, Home of Professional Open Source.
+ * Copyright 2014 Red Hat, Inc., and individual contributors
+ * as indicated by the @author tags.
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * <p/>
+ * JBoss, Home of Professional Open Source.
+ * Copyright 2014 Red Hat, Inc., and individual contributors
+ * as indicated by the @author tags.
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * <p/>
+ * JBoss, Home of Professional Open Source.
+ * Copyright 2014 Red Hat, Inc., and individual contributors
+ * as indicated by the @author tags.
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -95,7 +143,7 @@ import static org.jgroups.presentation.chat.utils.ConsoleHelper.getTextFromConso
  * <li>-Djava.net.preferIPv4Stack=true</li>
  * </ul>
  */
-public class Demo4_SimpleAsynchronousChatClientWithRPC extends ReceiverAdapter {
+public class Demo4_SimpleChatClientWithRPCAndFutures extends ReceiverAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -107,7 +155,7 @@ public class Demo4_SimpleAsynchronousChatClientWithRPC extends ReceiverAdapter {
     private AtomicInteger counter = new AtomicInteger();
 
     public static void main(String[] args) throws Exception {
-        new Demo4_SimpleAsynchronousChatClientWithRPC().runClient();
+        new Demo4_SimpleChatClientWithRPCAndFutures().runClient();
     }
 
     @Override
@@ -126,7 +174,8 @@ public class Demo4_SimpleAsynchronousChatClientWithRPC extends ReceiverAdapter {
             try {
                 String input = getTextFromConsole();
                 MethodCall sendMessage = new MethodCall(this.getClass().getDeclaredMethod("printOut", String.class), input);
-                NotifyingFuture<Integer> response = dispatcher.callRemoteMethodWithFuture(myAddress, sendMessage, RequestOptions.SYNC());
+                NotifyingFuture<Integer> response = dispatcher
+                        .callRemoteMethodWithFuture(myAddress, sendMessage, RequestOptions.ASYNC());
                 logger.info("Response :: {}", response.get());
             } catch (ApplicationExitException e) {
                 logger.info("Bye!");
