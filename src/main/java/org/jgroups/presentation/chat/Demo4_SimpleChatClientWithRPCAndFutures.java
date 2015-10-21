@@ -174,8 +174,7 @@ public class Demo4_SimpleChatClientWithRPCAndFutures extends ReceiverAdapter {
             try {
                 String input = getTextFromConsole();
                 MethodCall sendMessage = new MethodCall(this.getClass().getDeclaredMethod("printOut", String.class), input);
-                NotifyingFuture<Integer> response = dispatcher
-                        .callRemoteMethodWithFuture(myAddress, sendMessage, RequestOptions.ASYNC());
+                NotifyingFuture<Integer> response = dispatcher.callRemoteMethodWithFuture(myAddress, sendMessage, RequestOptions.SYNC());
                 logger.info("Response :: {}", response.get());
             } catch (ApplicationExitException e) {
                 logger.info("Bye!");
